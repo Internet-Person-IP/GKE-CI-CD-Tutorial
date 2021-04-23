@@ -1,4 +1,4 @@
-module "gke" {
+/*module "gke" {
   source                     = "terraform-google-modules/kubernetes-engine/google"
   project_id                 = var.gcp_project_id
   name                       = var.gcp_gke_cluster_name
@@ -74,4 +74,16 @@ module "gke" {
       "default-node-pool",
     ]
   }
+}
+*/
+
+resource "google_cloudbuild_trigger" "filename-trigger" {
+  github {
+    owner = "Internet-Person-IP"
+    name   = "GKE-CI-CD-Tutorial"
+    push {
+      branch = "master"
+    }
+  }
+  filename = "../cloudbuild.yaml"
 }
