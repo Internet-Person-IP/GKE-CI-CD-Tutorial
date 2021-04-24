@@ -3,7 +3,7 @@ import './App.css';
 
 
 const App = () => {
-  const [counter,setCounter] = useState(0);
+  const [counter,setCounter] = useState(2);
   return (
     <div className="App">
       <h1>Counter</h1>
