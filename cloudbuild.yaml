@@ -32,7 +32,7 @@ steps:
 #in the demo-cloudbuild Kubernetes Engine cluster.
 
 - name: 'gcr.io/cloud-builders/gcloud'
-  id: Generate manifest
+  id: Deploy
   entrypoint: /bin/sh
   args:
   - '-c'
