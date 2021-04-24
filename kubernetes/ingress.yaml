@@ -10,6 +10,6 @@ spec:
           pathType: Prefix
           backend:
             service:
-             name: demo
+             name: kube-cicd-react
              port:
               number: 80

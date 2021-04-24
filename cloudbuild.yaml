@@ -28,11 +28,17 @@ steps:
   - 'push'
   - 'gcr.io/$PROJECT_ID/kube-cicd-react:$SHORT_SHA'
 
-# This step deploys the new version of our container image
-# in the demo-cloudbuild Kubernetes Engine cluster.
-- name: 'gcr.io/cloud-builders/kubectl'
-  id: Deploy
+#This step deploys the new version of our container image
+#in the demo-cloudbuild Kubernetes Engine cluster.
+
+- name: 'gcr.io/cloud-builders/gcloud'
+  id: Generate manifest
+  entrypoint: /bin/sh
   args:
-  - 'apply'
-  - '-f'
-  - 'kubernetes/deployment.yml'
+  - '-c'
+  - |
+    cat ./kubernetes/deployment.yml | sed "s/COMMIT_SHA/${SHORT_SHA}/g" > kubectl apply -f -
+
+
+
+
