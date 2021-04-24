@@ -31,6 +31,14 @@ steps:
 #This step deploys the new version of our container image
 #in the demo-cloudbuild Kubernetes Engine cluster.
 
+
+- name: 'gcr.io/cloud-builders/gcloud'
+  id: Fix Args
+  args:
+  - |
+    container clusters get-credentials gke-react-with-cicd --region europe-west2 --project exec-tut-cicd-kubernetes-react
+
+
 - name: 'gcr.io/cloud-builders/gcloud'
   id: Deploy
   entrypoint: /bin/sh
