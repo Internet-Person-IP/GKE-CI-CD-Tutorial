@@ -32,24 +32,35 @@ steps:
 #in the demo-cloudbuild Kubernetes Engine cluster.
 
 
-- name: 'gcr.io/cloud-builders/gcloud'
-  id: Fix Args
+
+
+
+
+#- name: 'gcr.io/cloud-builders/gcloud'
+#  id: Fix Args
+#  args:
+#  - |
+#    container clusters get-credentials gke-react-with-cicd --region europe-west2 --project exec-tut-cicd-kubernetes-react
+
+
+#- name: 'gcr.io/cloud-builders/gcloud'
+#  id: Deploy
+#  entrypoint: /bin/sh
+#  args:
+#  - '-c'
+#  - |
+#    cat ./kubernetes/deployment.yaml | sed "s/COMMIT_SHA/${SHORT_SHA}/g" | kubectl apply -f -
+#  env:
+#  - 'CLOUDSDK_COMPUTE_ZONE=europe-west2'
+#  - 'CLOUDSDK_CONTAINER_CLUSTER=gke-react-with-cicd'
+
+
+
+
+- name: "gcr.io/cloud-builders/gke-deploy"
   args:
-  - |
-    container clusters get-credentials gke-react-with-cicd --region europe-west2 --project exec-tut-cicd-kubernetes-react
-
-
-- name: 'gcr.io/cloud-builders/gcloud'
-  id: Deploy
-  entrypoint: /bin/sh
-  args:
-  - '-c'
-  - |
-    cat ./kubernetes/deployment.yaml | sed "s/COMMIT_SHA/${SHORT_SHA}/g" | kubectl apply -f -
-  env:
-  - 'CLOUDSDK_COMPUTE_ZONE=europe-west2'
-  - 'CLOUDSDK_CONTAINER_CLUSTER=gke-react-with-cicd'
-
-
-
-
+  - run
+  - --filename=./kubernetes/
+  - --image=gcr.io/$PROJECT_ID/kube-cicd-react:$SHORT_SHA
+  - --location=europe-west2
+  - --cluster=gke-react-with-cicd
