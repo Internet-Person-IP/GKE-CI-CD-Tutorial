@@ -75,15 +75,3 @@ module "gke" {
     ]
   }
 }
-
-
-resource "google_cloudbuild_trigger" "filename-trigger" {
-  github {
-    owner = "Internet-Person-IP"
-    name   = "GKE-CI-CD-Tutorial"
-    push {
-      branch = "master"
-    }
-  }
-  filename = "cloudbuild.yaml"
-}
