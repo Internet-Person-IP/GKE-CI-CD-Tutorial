@@ -1,7 +1,7 @@
 # CI/CD for a React Application that is hosted on GKE that leverages Terraform
 
 ## Introduction
-This project was used in creating an interactive tutorial for a university course, the tutorial can be found ![here](https://www.katacoda.com/taqui/scenarios/code). The tutorial was created for us to learn more about Kubernetes, Docker, CI/CD, GKE and Terraform. If this is setup correctly it should create a Kubernetes Cluster that has a CI/CD pipeline in which which you can push to a repo and with build and deploy it to the GKE cluster. The proj
+This project was used in creating an interactive tutorial for a university course, the tutorial can be found [here](https://www.katacoda.com/taqui/scenarios/code). The tutorial was created for us to learn more about Kubernetes, Docker, CI/CD, GKE and Terraform. If this is setup correctly it should create a Kubernetes Cluster that has a CI/CD pipeline in which which you can push to a repo and with build and deploy it to the GKE cluster. The proj
 
 
 # Technology used:
